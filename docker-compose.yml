@@ -1,17 +1,15 @@
 services:
-  pythontelegrambottemplate:
-    #image: ghcr.io/<ваш профиль гит хаб>/<назввание репозитория>
-    image: pythontelegrambottemplate
+  bot:
+    image: ghcr.io/cornstalk24/shorturl-tgbot:latest
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: Dockerfile
     environment:
       TZ: "${TZ}"
       BOT_TOKEN: "${BOT_TOKEN}"
       PYTHONPATH: "${PYTHONPATH}"
-    # либо просто
-    # env_file:
-    #   - .env
+    env_file:
+      - .env
     volumes:
       - ./data:/app/data
     restart: unless-stopped
