@@ -1,23 +1,24 @@
-# Команды для управления проектом
+# Default target
+all: run
 
-# Инициализация окружения для разработки
+# Initialize the development environment
 init_dev:
-	@python3 -m venv .venv
-	@. .venv/bin/activate; pip install --upgrade pip -r requirements.txt
+	python3 -m venv .venv
+	. .venv/bin/activate; pip install --upgrade pip -r requirements.txt
 
-# Запуск контейнера
+# Run the application using Docker Compose
 run:
 	@mkdir -p data && chmod 777 data
-	@docker compose up -d --build
+	docker compose up -d --build
 
-# Остановка контейнера
+# Stop the application
 stop:
-	@docker compose stop
+	docker compose down
 
-# Удаление контейнера
+# Clean up Docker containers and volumes
 clean:
-	@docker compose down --remove-orphans
+	docker compose down --volumes --remove-orphans
 
-# Удаление всех образов и промежуточных данных
-prune:
-	@docker system prune -a --volumes -f
+# View logs
+logs:
+	docker compose logs -f
