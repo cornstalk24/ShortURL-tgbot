@@ -1,15 +1,15 @@
-# Используем базовый образ Python
+# Use Python base image
 FROM python:3.10-slim
 
-# Устанавливаем рабочую директорию
+# Set working directory
 WORKDIR /app
 
-# Копируем зависимости и устанавливаем их
+# Copy dependencies and install them
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копируем исходный код
+# Copy project files
 COPY . .
 
-# Указываем точку входа
-CMD ["python", "main.py"]
+# Set entry point
+ENTRYPOINT ["python", "main.py"]
