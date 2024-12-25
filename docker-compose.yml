@@ -1,10 +1,12 @@
+version: "3.8"
+
 services:
-  shorturl-bot:
+  shorturl-tgbot:
     image: ghcr.io/cornstalk24/shorturl-tgbot:latest
+    container_name: shorturl-tgbot
     environment:
-      TZ: "${TZ}"
-      BOT_TOKEN: "${BOT_TOKEN}"
-      PYTHONPATH: "${PYTHONPATH}"
+      - TZ=${TZ:-UTC}
+      - BOT_TOKEN=${BOT_TOKEN}
     volumes:
       - ./data:/app/data
     restart: unless-stopped
