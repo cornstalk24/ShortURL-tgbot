@@ -1,9 +1,6 @@
 services:
-  pythontelegrambot:
-    image: pythontelegrambot
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+  shorturl-bot:
+    image: ghcr.io/cornstalk24/shorturl-tgbot:latest
     environment:
       TZ: "${TZ}"
       BOT_TOKEN: "${BOT_TOKEN}"
