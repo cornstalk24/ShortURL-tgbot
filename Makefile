@@ -1,25 +1,23 @@
-all: run
+# Команды для управления проектом
 
+# Инициализация окружения для разработки
 init_dev:
 	@python3 -m venv .venv
-	@. .venv/bin/activate; pip install --upgrade pip -r requirements.txt -r requirements-dev.txt
+	@. .venv/bin/activate; pip install --upgrade pip -r requirements.txt
 
-## Runs application. Builds, creates, starts, and attaches to containers for a service. | Common
+# Запуск контейнера
 run:
 	@mkdir -p data && chmod 777 data
 	@docker compose up -d --build
 
-## Stops application. Stops running container without removing them.
+# Остановка контейнера
 stop:
 	@docker compose stop
 
-## Removes stopped service containers.
+# Удаление контейнера
 clean:
 	@docker compose down --remove-orphans
 
-## Starts container for debug
-debug:
-	@docker compose -f docker-compose.debug.yml up -d --build
-
-stopdebug:
-	@docker compose -f docker-compose.debug.yml down --remove-orphans
+# Удаление всех образов и промежуточных данных
+prune:
+	@docker system prune -a --volumes -f
